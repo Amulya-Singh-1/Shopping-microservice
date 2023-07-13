@@ -1,0 +1,21 @@
+server:
+  port: 5001
+
+eureka:
+  instance:
+    hostname: localhost
+    
+spring:
+  application:
+    name: ApiGateway
+  cloud:
+    gateway:
+      routes:
+      - id : userService
+        uri: lb://userService
+        predicates: 
+        - Path=/user/**
+      - id: productService
+        uri : lb://productService
+        predicates:
+        - Path=/product/**
